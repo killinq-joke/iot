@@ -6,6 +6,17 @@ Vagrant.configure("2") do |config|
     vm1.vm.box = "generic/alpine318"
     vm1.vm.hostname = "ztouzriS"
     vm1.vm.network "private_network", ip: "192.168.56.110"
+    config.vm.synced_folder "./manifests/", "/home/vagrant/manifests/", type: "rsync"
     vm1.vm.provision "shell", path: "../scripts/init-controlplane.sh"
+    vm1.vm.provision "shell", inline: <<-SHELL
+      sleep 10
+      sudo kubectl apply -f "/home/vagrant/manifests/deploy.yaml"
+      sudo kubectl apply -f "/home/vagrant/manifests/service.yaml"
+      sudo kubectl apply -f "/home/vagrant/manifests/ingress.yaml"
+    SHELL
+    vm1.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
   end
 end
