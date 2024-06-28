@@ -7,6 +7,10 @@ Vagrant.configure("2") do |config|
     vm1.vm.hostname = "ztouzriS"
     vm1.vm.network "private_network", ip: "192.168.56.110"
     vm1.vm.provision "shell", path: "../scripts/init-controlplane.sh"
+    vm1.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
   end
 
   # Define the second VM
@@ -15,5 +19,9 @@ Vagrant.configure("2") do |config|
     vm2.vm.hostname = "ztouzriSW"
     vm2.vm.network "private_network", ip: "192.168.56.111"
     vm2.vm.provision "shell", path: "../scripts/init-node.sh"
+    vm1.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 2
+    end
   end
 end
