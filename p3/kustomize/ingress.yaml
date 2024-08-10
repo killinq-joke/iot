@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
     name: mywebapp-ingress
     annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
+      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp
 spec:
   rules:
   - http:
