@@ -7,7 +7,7 @@ spec:
   template:
     spec:
       containers:
-      - image: zakariatouzri/test:v1
+      - image: zakariatouzri/test:v2
         name: mywebapp
         ports:
         - containerPort: 80
