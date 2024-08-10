@@ -4,11 +4,19 @@ metadata:
     name: mywebapp-ingress
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: /mywebapp
+      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp/assets
 spec:
   rules:
   - http:
       paths:
       - path: /mywebapp
+        pathType: Prefix
+        backend:
+          service:
+            name: mywebapp
+            port:
+              number: 8080
+      - path: /mywebapp/assets
         pathType: Prefix
         backend:
           service:
