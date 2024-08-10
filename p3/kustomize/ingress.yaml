@@ -16,7 +16,7 @@ spec:
             name: mywebapp
             port:
               number: 8080
-      - path: /mywebapp/assets
+      - path: /assets
         pathType: Prefix
         backend:
           service:
