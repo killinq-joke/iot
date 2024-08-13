@@ -1,0 +1,8 @@
+spec:
+  template:
+    spec:
+      containers:
+      - args:
+        - /usr/local/bin/argocd-server
+        - --insecure
+        name: argocd-server
