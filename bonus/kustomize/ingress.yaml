@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: mywebapp-ingress
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp
+      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp/assets
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /mywebapp
+        pathType: Prefix
+        backend:
+          service:
+            name: mywebapp
+            port:
+              number: 8080
+      - path: /assets
+        pathType: Prefix
+        backend:
+          service:
+            name: mywebapp
+            port:
+              number: 8080

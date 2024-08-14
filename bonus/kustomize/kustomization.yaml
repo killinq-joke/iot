@@ -1,0 +1,13 @@
+resources:
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+
+commonLabels:
+  app: mywebapp
+
+namePrefix:
+  kustom-
+
+nameSuffix:
+  -v1
