@@ -5,4 +5,5 @@ spec:
       - args:
         - /usr/local/bin/argocd-server
         - --insecure
+        - --rootpath=/argocd
         name: argocd-server
