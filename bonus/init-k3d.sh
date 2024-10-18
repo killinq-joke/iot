@@ -27,7 +27,8 @@ sudo kubectl create ns dev
 sudo kubectl apply -f ./manifests/argo-ingress.yaml
 sudo kubectl patch -n argocd deploy argocd-server --patch-file ./manifests/argo-insecure.yaml
 sudo kubectl wait --for=condition=ready pod -n argocd -l app.kubernetes.io/name=argocd-server
-sudo kubectl apply -f ./manifests/argo-app.yaml
-# sleep 5
-# yes | argocd login $(sudo kubectl get ing argocd-ingress -n argocd -o jsonpath="{.status.loadBalancer.ingress[0].ip}") --username=admin --password=$(sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-# argocd app create mywebapp --repo https://github.com/killinq-joke/iot --path p3/kustomize --dest-namespace dev --dest-server https://kubernetes.default.svc --sync-policy=auto
+cd manifests
+sudo ./create-argo-repo.sh
+sudo ./create-argo-app.sh
+sudo kubectl apply -f ./argo-repo.yaml
+sudo kubectl apply -f ./argo-app.yaml

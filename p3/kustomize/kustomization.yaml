@@ -4,7 +4,7 @@ resources:
 - ingress.yaml
 
 commonLabels:
-  app: mywebapp
+  app: ztouzri
 
 namePrefix:
   kustom-

@@ -1,27 +1,3 @@
-sudo apt install -y git
-
-sudo kubectl create ns gitlab
-
-sudo snap install helm --classic
-
-echo "127.0.0.1 gitlab.internal.com" | sudo tee -a /etc/hosts
-
-sudo helm repo add gitlab https://charts.gitlab.io/
-sudo helm repo update 
-sudo helm upgrade --install gitlab gitlab/gitlab \
-  -n gitlab \
-  -f https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
-  --set global.hosts.domain=internal.com \
-  --set global.hosts.externalIP=0.0.0.0 \
-  --set global.hosts.https=false \
-  --timeout 600s
-
-sudo kubectl wait --for=condition=ready --timeout=1200s pod -l app=webservice -n gitlab
-
-sudo kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -o jsonpath="{.data.password}" | base64 --decode
-
-sudo kubectl apply -f /home/vagrant/gitlab/ingress.yaml
-
 gitlab_api="http://$(sudo kubectl get ing -n gitlab -o jsonpath="{.status.loadBalancer.ingress[].ip}" gitlab-ingress)"
 gitlab_user="root"
 gitlab_password=$(sudo kubectl get secrets -n gitlab gitlab-gitlab-initial-root-password -ojsonpath="{.data.password}" | base64 -d)
@@ -70,7 +46,7 @@ cd ../kustomize
 
 git init
 
-git remote add lab ssh://git@172.18.0.2/root/test.git
+git remote add lab ssh://git@172.18.0.2:32022/root/test.git
 
 git config --global user.email "you@example.com"
 

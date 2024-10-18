@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mywebapp
+  name: ztouzri
 spec:
   replicas: 1
   template:
     spec:
       containers:
       - image: zakariatouzri/test:v3
-        name: mywebapp
+        name: ztouzri
         ports:
         - containerPort: 80

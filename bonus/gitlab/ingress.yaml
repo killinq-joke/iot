@@ -8,11 +8,20 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
     ingress.kubernetes.io/use-regex: "true"
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/rewrite-target: /assets
 spec:
   rules:
   - http:
       paths:
       - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gitlab-webservice-default
+            port:
+              number: 8181
+      - path: /assets
         pathType: Prefix
         backend:
           service:

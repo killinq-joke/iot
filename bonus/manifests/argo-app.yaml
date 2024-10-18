@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/killinq-joke/iot
+    repoURL: http://172.18.0.2/root/test.git
     targetRevision: HEAD
-    path: bonus/kustomize
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

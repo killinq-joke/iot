@@ -1,25 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: mywebapp-ingress
+    name: ztouzri-ingress
     annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp
-      nginx.ingress.kubernetes.io/rewrite-target: /mywebapp/assets
+      nginx.ingress.kubernetes.io/rewrite-target: /ztouzri
+      nginx.ingress.kubernetes.io/rewrite-target: /ztouzri/assets
 spec:
   rules:
   - http:
       paths:
-      - path: /mywebapp
+      - path: /ztouzri
         pathType: Prefix
         backend:
           service:
-            name: mywebapp
+            name: ztouzri
             port:
               number: 8080
       - path: /assets
         pathType: Prefix
         backend:
           service:
-            name: mywebapp
+            name: ztouzri
             port:
               number: 8080

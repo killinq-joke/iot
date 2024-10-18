@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mywebapp
+  name: ztouzri
 spec:
   ports:
   - protocol: TCP        
